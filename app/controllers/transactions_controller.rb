@@ -7,7 +7,7 @@ class TransactionsController < ApplicationController
 
     # Verifica se é debito e se tem dinheiro suficiente
     if transaction_type == 'debit' && amount > balance_before
-      return render json: { errors: ['Dinheiro insuficiente para realizar esta transação'] }, status: :unprocessable_entity
+      return render json: { errors: ['Saldo insuficiente para a transação'] }, status: :unprocessable_entity
     end
 
     balance_after = transaction_type == 'debit' ? balance_before - amount : balance_before + amount
@@ -26,7 +26,7 @@ class TransactionsController < ApplicationController
     render json: { errors: e.message }, status: :internal_server_error
   end
 
-  # usar index em vez de show
+  # o index aqui esta listando todos os registros de transações de uma conta
   def index
     account = Account.find(params[:account_id])
     transactions = account.transactions.order(created_at: :asc)

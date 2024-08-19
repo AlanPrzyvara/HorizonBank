@@ -3,14 +3,14 @@ class TransfersController < ApplicationController
     sender_account = Account.find(params[:account_id])
     receiver_account = Account.find(transfer_params[:receiver_account_id])
 
-    if sender_account.balance < transfer_params[:amount].to_f
+    if sender_account.balance < transfer_params[:amount].to_d
       render json: { error: 'Saldo insuficiente para a transação' }, status: :unprocessable_entity
       return
     end
 
     ActiveRecord::Base.transaction do
-      sender_account.update!(balance: sender_account.balance - transfer_params[:amount].to_f)
-      receiver_account.update!(balance: receiver_account.balance + transfer_params[:amount].to_f)
+      sender_account.update!(balance: sender_account.balance - transfer_params[:amount].to_d)
+      receiver_account.update!(balance: receiver_account.balance + transfer_params[:amount].to_d)
 
       @transfer = Transfer.create!(
         sender_account: sender_account,
