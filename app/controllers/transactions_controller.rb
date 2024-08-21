@@ -35,7 +35,7 @@ class TransactionsController < ApplicationController
     account: AccountSerializer.new(account).serializable_hash,
     transactions: TransactionSerializer.new(transactions).serializable_hash }, status: :ok
 
-  rescue ActiveRecord::RecordNotFound => e
+  rescue ActiveRecord::RecordNotFound
     render json: { errors: ['Não foi possível encontrar uma conta com este ID'] }, status: :not_found
   rescue => e
     render json: { errors: e.message }, status: :internal_server_error
@@ -49,7 +49,7 @@ class TransactionsController < ApplicationController
     render json: { account: AccountSerializer.new(account).serializable_hash, transactions:
     TransactionSerializer.new(transaction).serializable_hash }, status: :ok
 
-  rescue ActiveRecord::RecordNotFound => e
+  rescue ActiveRecord::RecordNotFound
     render json: { errors: ['Não foi possível encontrar uma transação com este ID'] }, status: :not_found
   rescue => e
     render json: { errors: e.message }, status: :internal_server_error
