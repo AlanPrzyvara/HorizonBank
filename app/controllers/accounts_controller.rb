@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  # Post /accounts
   def create
     account = Account.new(account_params)
     if account.save

@@ -9,7 +9,8 @@ class Account < ApplicationRecord
   has_many :received_transfers, class_name: 'Transfer', foreign_key: 'receiver_account_id'
 
   validates :name, :birthdate, :document, presence: true
-
+  # validates :password, presence: true, on: :create
+  # para resolver o problema da senha em branco, adicionei a validação de presença para password so na criação da conta
 
   # Garantir que o saldo inicial seja zero ao criar uma conta
   after_initialize :set_default_balance, if: :new_record?
@@ -23,6 +24,6 @@ class Account < ApplicationRecord
 
   # metodo para gerar um hash de senha aleatório de 16 digitos(sao 8byts) e salvar no banco
   def generate_password
-    self.password = SecureRandom.hex(8) if password_digest.blank?
+    self.password = SecureRandom.hex(8)
     end
 end

@@ -26,6 +26,6 @@ class TransfersController < ApplicationController
   private
 
   def transfer_params
-    params.require(:transfer).permit(:receiver_account_id, :amount)
+    params.require(:transfer).permit(:receiver_account_id, :amount, :password_digest)
   end
 end

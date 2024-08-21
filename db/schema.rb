@@ -1,14 +1,14 @@
-# This file is auto-generated from the current state of the database. Instead
-# of editing this file, please use the migrations feature of Active Record to
-# incrementally modify your database, and then regenerate this schema definition.
+# Este arquivo é gerado automaticamente a partir do estado atual do banco de dados. Em vez
+# de editar este arquivo, por favor, use o recurso de migrações do Active Record para
+# modificar incrementalmente seu banco de dados e, em seguida, regenerar esta definição de esquema.
 #
-# This file is the source Rails uses to define your schema when running `bin/rails
-# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
-# be faster and is potentially less error prone than running all of your
-# migrations from scratch. Old migrations may fail to apply correctly if those
-# migrations use external dependencies or application code.
+# Este arquivo é usado pelo Rails para definir seu esquema ao executar `bin/rails
+# db:schema:load`. Ao criar um novo banco de dados, `bin/rails db:schema:load` tende a
+# ser mais rápido e potencialmente menos propenso a erros do que executar todas as suas
+# migrações do zero. Migrações antigas podem falhar em ser aplicadas corretamente se essas
+# migrações usarem dependências externas ou código da aplicação.
 #
-# It's strongly recommended that you check this file into your version control system.
+# É altamente recomendado que você faça o commit deste arquivo em seu sistema de controle de versão.
 
 ActiveRecord::Schema[7.1].define(version: 2024_08_18_233851) do
   # These are extensions that must be enabled in order to support this database
