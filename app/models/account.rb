@@ -24,6 +24,6 @@ class Account < ApplicationRecord
 
   # metodo para gerar um hash de senha aleatório de 16 digitos(sao 8byts) e salvar no banco
   def generate_password
-    self.password = SecureRandom.hex(8)
+    self.password = SecureRandom.hex(8) if password_digest.blank?
     end
 end
