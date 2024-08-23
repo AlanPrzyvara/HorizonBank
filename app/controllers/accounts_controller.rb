@@ -8,10 +8,15 @@ class AccountsController < ApplicationController
       render json: { errors: account.errors.full_messages }, status: :unprocessable_entity
     end
   end
+  # Get /accounts/:id usado para mostrar um unico registro de conta
+  def show
+    account = Account.find(params[:id])
+    render json: { account: AccountSerializer.new(account).serializable_hash }, status: :ok
+  end
 
   private
 
   def account_params
-    params.require(:account).permit(:name, :birthdate, :document)
+    params.require(:account).permit(:name, :birthdate, :document, :balance)
   end
 end

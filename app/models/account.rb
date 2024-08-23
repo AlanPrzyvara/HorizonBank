@@ -8,10 +8,9 @@ class Account < ApplicationRecord
   has_many :sent_transfers, class_name: 'Transfer', foreign_key: 'sender_account_id'
   has_many :received_transfers, class_name: 'Transfer', foreign_key: 'receiver_account_id'
 
-  validates :name, :birthdate, :document, presence: true
-  # validates :password, presence: true, on: :create
-  # para resolver o problema da senha em branco, adicionei a validação de presença para password so na criação da conta
-
+  validates :name, :birthdate, :document, presence: { message: "Está faltando informar alguns itens" }
+  # eu valido apenas esses campos acima, se a pessoa nao enviar o balance, ele vai ser setado como 0.0
+  validates :document, uniqueness: { message: "Este documento já esta sendo usado" }
   # Garantir que o saldo inicial seja zero ao criar uma conta
   after_initialize :set_default_balance, if: :new_record?
   before_validation :generate_password, on: :create
