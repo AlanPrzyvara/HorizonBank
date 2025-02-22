@@ -26,7 +26,7 @@ class TransactionsController < ApplicationController
   # Get /accounts/:account_id/transactions o index aqui esta listando todos os registros de transações de uma conta
   def index
     account = Account.find(params[:account_id])
-    transactions = account.transactions.order(created_at: :asc)
+    transactions = account.transactions.order(created_at: :desc)
 
     render json: {
     account: AccountSerializer.new(account).serializable_hash,
