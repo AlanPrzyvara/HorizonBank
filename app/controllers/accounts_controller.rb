@@ -14,6 +14,11 @@ class AccountsController < ApplicationController
     render json: { account: AccountSerializer.new(account).serializable_hash }, status: :ok
   end
 
+  def index
+    accounts = Account.all.order(created_at: :asc)
+    render json: { accounts: AccountSerializer.new(accounts).serializable_hash }, status: :ok
+  end
+
   private
 
   def account_params
