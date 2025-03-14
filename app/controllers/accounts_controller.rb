@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
-  # Post /accounts
+  skip_before_action :authenticate_account, only: [:create]  # Permite criar conta sem estar logado
+
   def create
     account = Account.new(account_params)
     if account.save
@@ -8,10 +9,9 @@ class AccountsController < ApplicationController
       render json: { errors: account.errors.full_messages }, status: :unprocessable_entity
     end
   end
-  # Get /accounts/:id usado para mostrar um unico registro de conta
+
   def show
-    account = Account.find(params[:id])
-    render json: { account: AccountSerializer.new(account).serializable_hash }, status: :ok
+    render json: { account: AccountSerializer.new(current_account).serializable_hash }, status: :ok
   end
 
   def index
@@ -22,6 +22,6 @@ class AccountsController < ApplicationController
   private
 
   def account_params
-    params.require(:account).permit(:name, :birthdate, :document, :balance)
+    params.require(:account).permit(:name, :birthdate, :document, :password, :balance)
   end
 end
